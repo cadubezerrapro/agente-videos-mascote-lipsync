@@ -1,22 +1,55 @@
+<div align="center">
+
 # 🎬 Agente de Vídeos Virais com Mascote & Lip Sync
 
-> **Pipeline profissional para criar vídeos verticais (Reels, TikTok, Shorts) 1080x1920 a 30 fps com mascote falante, sincronização labial fonética (Rhubarb), voz humana contínua (Fish Audio, ElevenLabs ou VoiceStudio local), legendas palavra a palavra e renderização determinística via HyperFrames.**
+**Pipeline open-source para criar vídeos verticais virais (Reels · TikTok · Shorts)**\
+**com mascote ilustrado, lip sync fonético e legendas palavra a palavra.**
+
+[![Python 3.10+](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-f4d43a.svg)](./LICENSE)
+[![Claude Skill](https://img.shields.io/badge/Claude-Skill-blueviolet?logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyIDJhMTAgMTAgMCAxIDAgMCAyMCAxMCAxMCAwIDAgMCAwLTIweiIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==)](./SKILL.md)
+
+<br>
+
+<table>
+<tr>
+<td width="50%">
+
+### O que ele faz
+
+Transforma uma ideia ou vídeo viral de referência em um **vídeo vertical pronto para postar** com o seu próprio mascote ilustrado — 1080×1920 a 30 fps, com boca sincronizada, voz humana e legenda automática.
+
+</td>
+<td width="50%">
+
+### Para quem é
+
+Criadores de conteúdo, agências e devs que querem **escalar produção de vídeo curto** sem editor de vídeo, sem locução manual e sem mensalidade de ferramenta de animação.
+
+</td>
+</tr>
+</table>
+
+</div>
 
 ---
 
-## ⚡ O que este agente faz
+## ⚡ Funcionalidades
 
-Transforma uma ideia ou vídeo viral de referência em um **vídeo vertical pronto para postar** com o seu próprio mascote ilustrado:
-- **9 Poses Expressivas:** Geradas via Nano Banana com fundo liso e consistência de personagem.
-- **Voz 100% Humana e Fluida:** Síntese contínua em chamada única (sem pausas robóticas entre frases) via Fish Audio, ElevenLabs ou VoiceStudio local (grátis).
-- **Lip Sync Fonético com Rhubarb:** Mapeamento de 9 formas de boca vetoriais (A a H + X repouso) que acompanham cada fonema do português.
-- **Boca Fecha no Silêncio:** Algoritmo que detecta pausas de áudio e garante zero bocas abertas no silêncio.
-- **Legendas Dinâmicas:** Sincronizadas palavra por palavra, com destaque de cor e zoom de câmera na ênfase (`*palavra*`).
-- **Render Determinístico via HyperFrames:** HTML5 + GSAP compilado diretamente em MP4 1080x1920 30 fps sem editor de vídeo pesado.
+| Recurso | Detalhe |
+|---|---|
+| **9 Poses Expressivas** | Geradas via [Nano Banana](https://www.nanobanana.com/) com fundo liso e consistência de personagem |
+| **Voz 100% Humana** | Síntese contínua em chamada única — sem pausas robóticas entre frases |
+| **Lip Sync Fonético** | [Rhubarb](https://github.com/DanielSWolf/rhubarb-lip-sync) mapeia 9 formas de boca vetoriais (A–H + X) que acompanham cada fonema |
+| **Boca Fecha no Silêncio** | Algoritmo que detecta pausas de áudio e garante zero bocas abertas no silêncio |
+| **Legendas Dinâmicas** | Sincronizadas palavra por palavra, com destaque de cor e zoom de câmera na ênfase |
+| **Render Determinístico** | [HyperFrames](https://www.npmjs.com/package/hyperframes) compila HTML5 + GSAP direto em MP4 — sem editor de vídeo pesado |
+| **3 Provedores de Voz** | Fish Audio, ElevenLabs ou VoiceStudio (100% local e gratuito) |
+| **Claude Skill Integrada** | O [`SKILL.md`](./SKILL.md) permite que qualquer agente de IA orquestre toda a pipeline |
 
 ---
 
-## 📐 Pipeline
+## 📐 Como funciona
 
 ```
   ┌─────────────────┐       ┌──────────────────────┐       ┌────────────────────┐
@@ -32,90 +65,93 @@ Transforma uma ideia ou vídeo viral de referência em um **vídeo vertical pron
 
 ---
 
-## 📂 Estrutura do Repositório
+## 📂 Estrutura do Projeto
 
 ```
 agente-videos-mascote-lipsync/
-├── SKILL.md            # Documentação completa e instrução para agentes de IA
-├── README.md           # Guia de início rápido e visão geral
-├── requirements.txt    # Dependências Python
-├── scripts/
-│   ├── recorta.py      # Remove fundo e calcula transparência
-│   ├── rosto.py        # Grade de medição, base sem boca e folha de conferência
-│   ├── mascote_rig.py  # Stage SVG com 9 bocas vetoriais, pálpebras e respiração
-│   ├── vozes.py        # Wrapper unificado para Fish Audio, ElevenLabs e VoiceStudio
-│   └── video.py        # Pipeline de montagem, timeline GSAP e render MP4
-└── mascote/            # Diretório de trabalho do personagem (criado no uso)
-    ├── src/            # As 9 imagens do Nano Banana
-    ├── poses/          # Recortes transparentes e bases sem boca
-    ├── layout.json     # Coordenadas de boca e olhos de cada pose
-    └── config.json     # Provedor de voz, cores e parâmetros
+├── SKILL.md              # Especificação completa para agentes de IA
+├── README.md             # Este arquivo
+├── requirements.txt      # Dependências Python
+├── LICENSE               # MIT
+└── scripts/
+    ├── recorta.py        # Remove fundo e calcula transparência
+    ├── rosto.py          # Grade de medição, base sem boca e folha de conferência
+    ├── mascote_rig.py    # Stage SVG com 9 bocas vetoriais, pálpebras e respiração
+    ├── vozes.py          # Wrapper unificado: Fish Audio · ElevenLabs · VoiceStudio
+    └── video.py          # Pipeline de montagem, timeline GSAP e render MP4
 ```
 
 ---
 
-## 🚀 Instalação & Pré-requisitos
+## 🚀 Instalação
 
-### 1. Dependências do Sistema
+### Pré-requisitos
 
-- **Python 3.10+**
-- **Node.js 20+**
-- **FFmpeg & FFprobe**
-- **Rhubarb Lip Sync** (versão 1.13+)
+| Ferramenta | Versão mínima | Instalação |
+|---|---|---|
+| Python | 3.10+ | [python.org](https://www.python.org/) |
+| Node.js | 20+ | [nodejs.org](https://nodejs.org/) |
+| FFmpeg & FFprobe | — | `sudo apt install ffmpeg` ou [ffmpeg.org](https://ffmpeg.org/) |
+| Rhubarb Lip Sync | 1.13+ | [Releases](https://github.com/DanielSWolf/rhubarb-lip-sync/releases) |
 
-#### Linux / WSL / Ubuntu:
-```bash
-sudo apt-get update && sudo apt-get install -y ffmpeg libboost-dev cmake build-essential
-git clone --depth 1 https://github.com/DanielSWolf/rhubarb-lip-sync ~/repos/rhubarb-lip-sync
-cd ~/repos/rhubarb-lip-sync && mkdir -p build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release && make -j$(nproc) rhubarb
-export RHUBARB=$HOME/repos/rhubarb-lip-sync/build/rhubarb/rhubarb
-```
-
-#### Windows:
-- Baixe o release do [Rhubarb Lip Sync](https://github.com/DanielSWolf/rhubarb-lip-sync/releases) (`rhubarb.exe`) e coloque no PATH ou defina a variável `RHUBARB=C:\caminho\rhubarb.exe`.
-- Instale o FFmpeg via `winget install Gyan.FFmpeg` ou baixe pelo site oficial.
-
-### 2. Dependências Node.js & Python
+### Setup rápido
 
 ```bash
-# Dependências Python
+# 1. Clone o repositório
+git clone https://github.com/cadubezerrapro/agente-videos-mascote-lipsync.git
+cd agente-videos-mascote-lipsync
+
+# 2. Instale as dependências Python
 pip install -r requirements.txt
 
-# Renderizador HyperFrames & Playwright
+# 3. Instale o renderizador e o navegador
 npm install -g hyperframes
 npx playwright install chromium
+
+# 4. Configure o Rhubarb (Linux/WSL)
+git clone --depth 1 https://github.com/DanielSWolf/rhubarb-lip-sync ~/repos/rhubarb-lip-sync
+cd ~/repos/rhubarb-lip-sync && mkdir -p build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release && make -j$(nproc) rhubarb
+export RHUBARB=$HOME/repos/rhubarb-lip-sync/build/rhubarb/rhubarb
+
+# 5. Configure a chave do provedor de voz (escolha um)
+export FISH_API_KEY="sua-chave"          # Fish Audio
+export ELEVENLABS_API_KEY="sua-chave"    # ElevenLabs
+export VOICESTUDIO_URL="http://127.0.0.1:3900"  # VoiceStudio (local, grátis)
 ```
 
 ---
 
-## 🎙️ Provedores de Voz Suportados
+## 🎙️ Provedores de Voz
 
-Configure em `mascote/config.json`:
-
-| Provedor | Modo | Variável de Ambiente | Destaque |
+| Provedor | Modo | Variável de ambiente | Destaque |
 |---|---|---|---|
-| **Fish Audio** | API Nuvem | `export FISH_API_KEY="..."` | PT-BR natural, Voice Design e clonagem rápida |
-| **ElevenLabs** | API Nuvem | `export ELEVENLABS_API_KEY="..."` | Máxima expressividade e timestamps por palavra |
-| **VoiceStudio** | Local / API | `export VOICESTUDIO_URL="http://127.0.0.1:3900"` | 100% gratuito, sem limite de uso e offline |
+| **[Fish Audio](https://fish.audio/)** | API nuvem | `FISH_API_KEY` | PT-BR natural, Voice Design e clonagem rápida |
+| **[ElevenLabs](https://elevenlabs.io/)** | API nuvem | `ELEVENLABS_API_KEY` | Máxima expressividade e timestamps por palavra |
+| **VoiceStudio** | Local | `VOICESTUDIO_URL` | 100% gratuito, sem limite de uso, offline |
 
 ---
 
-## 🛠️ Passo a Passo Rápido
+## 🛠️ Uso Rápido
 
-### Passo 1: 9 Poses no Nano Banana
-Gere o mascote em 9 poses com fundo liso monocromático (ex.: `#BFE3FF`), da cintura para cima, sem boca desenhada:
-`explica.png`, `aponta.png`, `joinha.png`, `ok.png`, `cruzado.png`, `duvida.png`, `confiante.png`, `tchau.png`, `comemora.png`.
+### 1. Gere as 9 poses no Nano Banana
 
-### Passo 2: Recorte e Rigging
+Crie o mascote em 9 poses com fundo liso monocromático (`#BFE3FF`), da cintura para cima, **sem boca desenhada**:
+
+`explica` · `aponta` · `joinha` · `ok` · `cruzado` · `duvida` · `confiante` · `tchau` · `comemora`
+
+### 2. Recorte e rigging
+
 ```bash
 python3 scripts/recorta.py mascote/src mascote/poses
 python3 scripts/rosto.py grade mascote/poses
-# Preencha mascote/layout.json com as coordenadas lidas na grade
+# → Preencha mascote/layout.json com as coordenadas
 python3 scripts/rosto.py preparar mascote
 python3 scripts/rosto.py folha mascote
 ```
 
-### Passo 3: Roteiro (`roteiros/meu-video.json`)
+### 3. Escreva o roteiro
+
 ```json
 {
   "nome": "como-viralizar",
@@ -129,25 +165,44 @@ python3 scripts/rosto.py folha mascote
 }
 ```
 
-### Passo 4: Geração do Vídeo
+### 4. Gere o vídeo
+
 ```bash
 python3 scripts/video.py mascote roteiros/como-viralizar.json
+# → saida/como-viralizar.mp4 (1080×1920, 30 fps, pronto para postar)
 ```
-O vídeo final será compilado em `saida/como-viralizar.mp4` pronto para publicação.
 
 ---
 
-## 🤖 Uso com Agentes de IA (Claude Code, Cursor, Antigravity)
+## 🤖 Uso com Agentes de IA
 
-Este repositório inclui a especificação completa [`SKILL.md`](./SKILL.md). 
-Ao carregar este projeto em qualquer assistente de código, o agente já saberá:
-1. Como validar o ambiente e as chaves de API.
-2. Como orquestrar as poses, o recorte e a calibração de olhos e boca.
-3. Como gerar o áudio e inspecionar a conformidade fonética do lip sync.
-4. Como rodar o checklist de qualidade antes da entrega final.
+Este repositório inclui a especificação completa [`SKILL.md`](./SKILL.md), compatível com **Claude Code**, **Cursor**, **Antigravity** e qualquer assistente que leia arquivos de skill.
+
+Ao carregar o projeto, o agente já sabe:
+
+1. ✅ Validar o ambiente e as chaves de API
+2. ✅ Orquestrar poses, recorte e calibração de olhos/boca
+3. ✅ Gerar áudio e inspecionar a conformidade fonética do lip sync
+4. ✅ Rodar o checklist de qualidade antes da entrega final
+
+**Instalar a skill no Claude:**
+
+```
+/plugin install agente-videos-mascote-lipsync@cadubezerrapro
+```
 
 ---
 
 ## 📄 Licença
 
-Distribuído sob a licença [MIT](./LICENSE). Criado por [Cadu Bezerra](https://github.com/cadubezerrapro).
+Distribuído sob a licença [MIT](./LICENSE).
+
+---
+
+<div align="center">
+
+Feito por [**Cadu Bezerra**](https://github.com/cadubezerrapro) · [@OCadubezerra](https://instagram.com/OCadubezerra)
+
+[ia_thefuture](https://ia-thefuture.vercel.app) · [ZuckPay](https://zuckpay.com.br)
+
+</div>
